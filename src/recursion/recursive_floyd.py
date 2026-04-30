@@ -47,7 +47,7 @@ def print_out_graph():
             message = "Distance from Node %s to Node %s is %s" %\
                 (start_node,end_node,distance)
             print (message)
-def recursive_floyd_warshall(outer_loop:int, middle_loop:int, inner_loop:int):
+def recursive_floyd_warshall(outer_loop:int=0, middle_loop:int=0, inner_loop:int=0):
         """
         This function computes shortest path between each pair node
         It computes by comparing a direct path with paths that have 
