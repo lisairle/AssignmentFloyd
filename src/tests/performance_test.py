@@ -10,17 +10,6 @@ from recursion.recursive_floyd import recursive_floyd_warshall
 from iterative.iterative_floyd import iterative_floyd
 from time import process_time
 from time import perf_counter
-from sys import maxsize
-NO_PATH =  maxsize
-
-def reset_graph():
-    global GRAPH
-    GRAPH = [
-        [0, 7, NO_PATH, 8],
-        [NO_PATH, 0, 5, NO_PATH],
-        [NO_PATH, NO_PATH, 0, 2],
-        [NO_PATH, NO_PATH, NO_PATH, 0]
-    ]
 
 def performance_test(function_handle):
     """
@@ -33,13 +22,11 @@ def performance_test(function_handle):
     
     start_time = perf_counter()
 
-    for _ in range(1000):
-        reset_graph()
-        function_handle()
+    function_handle()
 
     end_time = perf_counter()
 
-    print(f"{end_time - start_time:.10f}")
+    print(f"{(end_time - start_time) * 1000:.6f} ms")
     
 
 print ("Recursion Test Time")
