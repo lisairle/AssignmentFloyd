@@ -28,9 +28,10 @@ def main():
     This is the calling function for the recursive floyd's algorithm
     """
     # function call to recursive_floyd_warshall needs to be here
+    recursive_floyd_warshall(0, 0, 0)
 
     #uncomment next line when you have completed the task
-    #print_out_graph()
+    print_out_graph()
 
 def print_out_graph():
     """
@@ -46,7 +47,7 @@ def print_out_graph():
             message = "Distance from Node %s to Node %s is %s" %\
                 (start_node,end_node,distance)
             print (message)
-def recursive_floyd_warshall(outer_loop:int, middle_loop:int, inner_loop:int):
+def recursive_floyd_warshall(outer_loop:int=0, middle_loop:int=0, inner_loop:int=0):
         """
         This function computes shortest path between each pair node
         It computes by comparing a direct path with paths that have 
@@ -61,6 +62,29 @@ def recursive_floyd_warshall(outer_loop:int, middle_loop:int, inner_loop:int):
         param: middle_loop: This variable is from the second loop of the iterative version
         param: inner_loop: This variable is from the last loop of the iterative version
         """
+        if outer_loop == MAX_LENGTH:
+            return
+
+        if middle_loop < MAX_LENGTH and inner_loop < MAX_LENGTH:
+
+            if middle_loop != inner_loop:
+                if (
+                    GRAPH[middle_loop][outer_loop] != NO_PATH and
+                    GRAPH[outer_loop][inner_loop] != NO_PATH
+                ):
+                    GRAPH[middle_loop][inner_loop] = min(
+                        GRAPH[middle_loop][inner_loop],
+                        GRAPH[middle_loop][outer_loop] + GRAPH[outer_loop][inner_loop]
+                    )
+
+        if inner_loop + 1 < MAX_LENGTH:
+            recursive_floyd_warshall(outer_loop, middle_loop, inner_loop + 1)
+
+        elif middle_loop + 1 < MAX_LENGTH:
+            recursive_floyd_warshall(outer_loop, middle_loop + 1, 0)
+
+        else:
+            recursive_floyd_warshall(outer_loop + 1, 0, 0)
                 
 if __name__ == "__main__":
     main()

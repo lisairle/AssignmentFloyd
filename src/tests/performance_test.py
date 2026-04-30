@@ -9,6 +9,7 @@ sys.path.append('../')
 from recursion.recursive_floyd import recursive_floyd_warshall
 from iterative.iterative_floyd import iterative_floyd
 from time import process_time
+from time import perf_counter
 
 def performance_test(function_handle):
     """
@@ -18,8 +19,14 @@ def performance_test(function_handle):
 
     Please complete this function
     """
+    
+    start_time = perf_counter()
 
-    pass
+    function_handle()
+
+    end_time = perf_counter()
+
+    print(f"{(end_time - start_time) * 1000:.6f} ms")
     
 
 print ("Recursion Test Time")
