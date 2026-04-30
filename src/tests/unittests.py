@@ -21,6 +21,8 @@ class TestFloydWarshall(unittest.TestCase):
         """Reset both graphs before each test"""
         rec.GRAPH = copy.deepcopy(BASE_GRAPH)
         it.GRAPH = copy.deepcopy(BASE_GRAPH)
+        rec.MAX_LENGTH = len(rec.GRAPH[0])
+        it.MAX_LENGTH = len(it.GRAPH[0])
 
     def test_iterative_runs(self):
         """Iterative version runs without crashing"""
@@ -65,6 +67,8 @@ class TestFloydWarshall(unittest.TestCase):
         """Graph with one node"""
         rec.GRAPH = [[0]]
         it.GRAPH = [[0]]
+        rec.MAX_LENGTH = len(rec.GRAPH[0])
+        it.MAX_LENGTH = len(it.GRAPH[0])
 
         rec.recursive_floyd_warshall()
         it.iterative_floyd()
@@ -81,6 +85,8 @@ class TestFloydWarshall(unittest.TestCase):
 
         rec.GRAPH = copy.deepcopy(graph)
         it.GRAPH = copy.deepcopy(graph)
+        rec.MAX_LENGTH = len(rec.GRAPH[0])
+        it.MAX_LENGTH = len(it.GRAPH[0])
 
         rec.recursive_floyd_warshall()
         it.iterative_floyd()
@@ -97,6 +103,7 @@ class TestFloydWarshall(unittest.TestCase):
         ]
 
         rec.GRAPH = copy.deepcopy(graph)
+        rec.MAX_LENGTH = len(rec.GRAPH[0])
 
         rec.recursive_floyd_warshall()
 
@@ -112,6 +119,7 @@ class TestFloydWarshall(unittest.TestCase):
         ]
 
         rec.GRAPH = copy.deepcopy(graph)
+        rec.MAX_LENGTH = len(rec.GRAPH[0])
         rec.recursive_floyd_warshall()
 
         self.assertEqual(rec.GRAPH[0][2], 0)
@@ -124,6 +132,7 @@ class TestFloydWarshall(unittest.TestCase):
         ]
 
         rec.GRAPH = copy.deepcopy(graph)
+        rec.MAX_LENGTH = len(rec.GRAPH[0])
         rec.recursive_floyd_warshall()
 
         self.assertEqual(rec.GRAPH, graph)
